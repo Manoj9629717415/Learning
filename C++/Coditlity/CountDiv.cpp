@@ -19,15 +19,9 @@ int solution(int A, int B, int K) {
         int diff = (B - A);
         numofdivisible = diff/K;
 		//increment one since first value is divisible
-		if(A!= 0)
-		{
-			numofdivisible++;
-		}
-		else if(A==0 && B%K != 0)
-		{
-			numofdivisible++;
-		}
-        if(B%K==0)
+		numofdivisible++;
+
+        if(B%K==0 && diff%K !=0)
         {
             numofdivisible++;
         }
@@ -39,7 +33,7 @@ int solution(int A, int B, int K) {
         numofdivisible = diff/K;
 		//increment one since first value is divisible
 		numofdivisible++;
-        if(B%K==0)
+        if(B%K==0 && diff%K !=0)
         {
             numofdivisible++;
         }
