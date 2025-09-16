@@ -36,3 +36,33 @@ int solution(vector<int> &A) {
     }
 
 }
+
+
+//another solution
+int solution(vector<int> &A) {
+    // Implement your solution here
+    long long noofcars_comingEast = 0;
+    long long numofpassingCars = 0;
+
+    for(auto x : A)
+    {
+        if(x == 1)
+        {
+            numofpassingCars = numofpassingCars + noofcars_comingEast;
+        }
+        else {
+            noofcars_comingEast++;
+        }
+    }
+
+    if(numofpassingCars > 1000000000) return -1;
+
+    return numofpassingCars;
+
+}
+
+
+
+
+
+
