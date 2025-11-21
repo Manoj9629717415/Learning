@@ -38,3 +38,28 @@ int solution(vector<int> &A) {
 
 
 }
+
+//another solution#include <set>
+
+int solution(vector<int> &A) {
+    // Implement your solution here
+    std::set<int> uniqele;
+    int prevsize = 0;
+
+    for(int &x : A)
+    {
+        uniqele.insert(x);
+        if(prevsize == (int)uniqele.size())
+        {
+            return 0;
+        }
+        prevsize = uniqele.size();
+    }
+
+     std::set<int>::reverse_iterator rit = uniqele.rbegin();
+
+     if(*rit != (int)uniqele.size()) return 0;
+
+
+    return 1;
+}

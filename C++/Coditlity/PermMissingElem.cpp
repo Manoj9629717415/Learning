@@ -22,5 +22,27 @@ int solution(vector<int> &A) {
 
     return A.size()- (diff -1);
 
+}
+
+//proper solution time complexity O(N) or O(N * log(N))
+
+nt solution(vector<int> &A) {
+    // Implement your solution here
+    if(A.empty()) return 1;
+    if((A.size() == 1) && A[0] !=1) return 1;
+
+    int sumarray = 0;
+    int sumnumber = 0;
+    int i =1;
+
+    for(std::vector<int>::iterator it = A.begin();it != A.end();it++,i++)
+    {
+        sumarray += *it;
+        sumnumber += i;
+    }
+    //since array has N+1 value,add one more time with i
+    sumnumber += i;
+
+    return sumnumber - sumarray;
 
 }

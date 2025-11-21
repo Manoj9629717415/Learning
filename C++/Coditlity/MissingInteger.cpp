@@ -21,3 +21,36 @@ int solution(vector<int> &A) {
     }
     return i;
 }
+
+//Another solution#include <set>
+int solution(vector<int> &A) {
+    // Implement your solution here
+
+    if(((int)A.size() == 1) && A[0] != 1) return 1;
+    if(((int)A.size() == 1) && A[0] == 1) return 2;
+    std::set<int> uniqele;
+
+    for(int i = 0;i < (int)A.size();i++)
+    {
+        if(A[i] > 0)
+        {
+            uniqele.insert(A[i]);
+        }
+    }
+
+    if(uniqele.empty()) return 1;
+
+    int min = 1;
+    for(int x : uniqele)
+    {
+        if(x == min)
+        {
+            min++;
+        }
+        else {
+            return min;
+        }
+    }
+
+    return min;
+}
