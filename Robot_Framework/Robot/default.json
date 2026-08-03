@@ -1,0 +1,18 @@
+{
+  "default": {
+    "implementation": "server",
+    "keyboard_mapping": "keyboard_mapping.json",
+    "icon_model_file": "best.pt",
+    "text_db": "MQB_MEB_Baseline_Language.xlsx",
+    "font_file": "Roboto-Bold.ttf",
+    "icon_model": "best.pt",
+    "default_language": "eng",
+    "tessdata_path": "C:\\tessdata\\tessdata\\",
+    "can_interface": "can0",
+    "eth_interface": "eth0",
+    "adb_interface": "adb",
+    "can_logger": true,
+    "eth_logger": true,
+    "adb_logger": false
+  }
+}

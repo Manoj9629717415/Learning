@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.10.8 on win32)" generated="2026-07-15T19:23:23.441193" rpa="false" schemaversion="5">
+<suite id="s1" name="DiagnosticsTest" source="C:\Project_Related_MAnoj_PErsonal\Study\GIT\Learning\Robot_Framework\Robot\Tests\DiagnosticsTest.robot">
+<test id="s1-t1" name="Validate Current SW Version" line="8">
+<kw name="Enter Extended Session" owner="DiagnosticsKeyword">
+<kw name="Enter Session Control" owner="DiagnosticsKeyword">
+<kw name="Change Session" owner="Diagnostics">
+<arg>${SESSION_CONTROL}</arg>
+<status status="PASS" start="2026-07-15T19:23:23.474244" elapsed="0.001003"/>
+</kw>
+<kw name="Verify Session" owner="DiagnosticsKeyword">
+<kw name="Get Session" owner="Diagnostics">
+<msg time="2026-07-15T19:23:23.475247" level="INFO">${current_session} = 16</msg>
+<var>${current_session}</var>
+<status status="PASS" start="2026-07-15T19:23:23.475247" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${current_session}</arg>
+<arg>${expected_session}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2026-07-15T19:23:23.475247" elapsed="0.000000"/>
+</kw>
+<arg>${SESSION_CONTROL}</arg>
+<status status="PASS" start="2026-07-15T19:23:23.475247" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-07-15T19:23:23.474244" elapsed="0.001003"/>
+</kw>
+<kw name="Enter Tester Present" owner="DiagnosticsKeyword">
+<kw name="Change Session" owner="Diagnostics">
+<arg>${TESTER_PRESENT}</arg>
+<status status="PASS" start="2026-07-15T19:23:23.476242" elapsed="0.000000"/>
+</kw>
+<kw name="Verify Session" owner="DiagnosticsKeyword">
+<kw name="Get Session" owner="Diagnostics">
+<msg time="2026-07-15T19:23:23.476242" level="INFO">${current_session} = 62</msg>
+<var>${current_session}</var>
+<status status="PASS" start="2026-07-15T19:23:23.476242" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${current_session}</arg>
+<arg>${expected_session}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2026-07-15T19:23:23.476242" elapsed="0.000000"/>
+</kw>
+<arg>${TESTER_PRESENT}</arg>
+<status status="PASS" start="2026-07-15T19:23:23.476242" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-07-15T19:23:23.476242" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-07-15T19:23:23.473266" elapsed="0.003984"/>
+</kw>
+<kw name="Verify SW Version" owner="DiagnosticsKeyword">
+<kw name="Get Sw Version" owner="Diagnostics">
+<msg time="2026-07-15T19:23:23.477250" level="INFO">${current} = X316</msg>
+<var>${current}</var>
+<status status="PASS" start="2026-07-15T19:23:23.477250" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${current}</arg>
+<arg>${expected}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-07-15T19:23:23.477250" elapsed="0.000000"/>
+</kw>
+<arg>${ECU_VERSION}</arg>
+<status status="PASS" start="2026-07-15T19:23:23.477250" elapsed="0.000000"/>
+</kw>
+<kw name="Clear All DTCs" owner="DiagnosticsKeyword">
+<kw name="Clear Dtc" owner="Diagnostics">
+<msg time="2026-07-15T19:23:23.478248" level="INFO">${status} = DTC Cleared</msg>
+<var>${status}</var>
+<status status="PASS" start="2026-07-15T19:23:23.478248" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${status}</arg>
+<arg>DTC Cleared</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-07-15T19:23:23.478248" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-07-15T19:23:23.477250" elapsed="0.000998"/>
+</kw>
+<status status="PASS" start="2026-07-15T19:23:23.473266" elapsed="0.004982"/>
+</test>
+<status status="PASS" start="2026-07-15T19:23:23.443189" elapsed="0.035059"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="DiagnosticsTest" id="s1" pass="1" fail="0" skip="0">DiagnosticsTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

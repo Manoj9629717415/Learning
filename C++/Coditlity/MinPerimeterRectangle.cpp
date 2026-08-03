@@ -21,8 +21,6 @@ int solution(int N) {
                 minperimeter = perimeter;
             }
         }
-    }
-
+	}
     return minperimeter;
-
 }

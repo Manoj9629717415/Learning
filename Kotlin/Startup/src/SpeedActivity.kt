@@ -1,0 +1,67 @@
+package com.example.carspeed
+import android.car.hardware.property.CarPropertyValue
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.widget.TextView
+
+
+class SpeedActivity : Activity() {
+    private lateinit var car: Car
+    private var carPropMgr: CarPropertyManager? = null
+    private lateinit var speedText: TextView
+    private val mainHandler = Handler(Looper.getMainLooper())
+
+
+    // Replace with actual property id from platform headers
+    private val PROP_VEHICLE_SPEED = 0x0010 // placeholder
+
+
+    private val speedListener = CarPropertyManager.OnCarPropertyChangedListener { value: CarPropertyValue ->
+// The value type depends on the HAL; many platforms use Float for speed (m/s)
+        val raw = value.value
+        val speedMps = when (raw) {
+            is Float -> raw
+            is Double -> raw.toFloat()
+            is Int -> raw.toFloat()
+            else -> null
+        }
+        speedMps?.let {
+            val speedKph = it * 3.6f
+            mainHandler.post {
+                speedText.text = String.format("%.1f km/h", speedKph)
+            }
+        }
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_speed)
+        speedText = findViewById(R.id.speedText)
+
+
+        car = Car.createCar(this)
+        carPropMgr = car.getCarManager(Car.PROPERTY_SERVICE) as CarPropertyManager
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        carPropMgr?.registerListener(speedListener, PROP_VEHICLE_SPEED, CarPropertyManager.SAMPLE_RATE_ON_CHANGE)
+    }
+
+
+    override fun onPause() {
+        super.onPause()
+        carPropMgr?.unregisterListener(speedListener)
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        car.disconnect()
+    }
+}
+
+open annotation class Activity
