@@ -4,7 +4,6 @@
 #include <mutex>
 #include <chrono>
 #include <atomic>
-
 std::mutex worker3_mu;
 
 void worker1(int a)
@@ -118,6 +117,7 @@ void worker7(std::atomic<int>& counter,int& ind_countrer)
     }
 }
 
+
 int main()
 {
     int a{10},b{20},counter{0};
@@ -158,22 +158,31 @@ int main()
     // std::thread con1(consumer1,std::ref(x),std::ref(ready));
     // std::thread con2(consumer2,std::ref(x),std::ref(ready));
 
-    std::atomic<int> g{150};
+    // std::atomic<int> g{150};
 
-    int expected = 100;
+    // int expected = 100;
 
-    bool result = g.compare_exchange_weak(expected, 200);
+    // bool result = g.compare_exchange_weak(expected, 200);
 
-    std::cout<<"compare_exchange_weak result = "<<result<<" expected = "<<expected<< " g = "<<g<<std::endl;
+    // std::cout<<"compare_exchange_weak result = "<<result<<" expected = "<<expected<< " g = "<<g<<std::endl;
 
     std::atomic<int> cas_loop_counter{0};
     std::vector<int> indidualcounter(20,0);
 
-    for(int i=0;i<20;i++)
-    {
-        counterthread.emplace_back(worker7,std::ref(cas_loop_counter),std::ref(indidualcounter[i]));
-    }
+    // for(int i=0;i<20;i++)
+    // {
+    //     counterthread.emplace_back(worker7,std::ref(cas_loop_counter),std::ref(indidualcounter[i]));
+    // }
 
+    std::jthread t([&cas_loop_counter](std::stop_token token){
+        while(!token.stop_requested())
+        {
+            std::this_thread::sleep_for(std::chrono::microseconds(500));
+            cas_loop_counter.fetch_add(1);
+        }
+    });
+
+    
 
 
     // p.join();
@@ -183,20 +192,24 @@ int main()
     // w1.join();
     // w2.join();
 
-    for(auto& th : counterthread)
-    {
-        th.join();
-    }
+    // for(auto& th : counterthread)
+    // {
+    //     th.join();
+    // }
 
     //  for(auto& th : atomic_threads)
     // {
     //     th.join();
     // }
 
-     std::cout<<"cas_loop_counter "<<cas_loop_counter<<std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+
+
     for(int i = 0;i <20;i++)
     {
         std::cout<<"thread "<<i<< "incremeneted "<<indidualcounter[i]<<" times"<<std::endl;
     }
+    t.request_stop();
+    std::cout<<"cas_loop_counter "<<cas_loop_counter<<std::endl;
 
 }
